@@ -12,6 +12,7 @@ import {
 } from '@react-three/drei'
 
 function Train(props) {
+  const { cabins } = props
   const ref = useRef()
   const scroll = useScroll()
   const [cabin, seat] = useGLTF([
@@ -25,6 +26,11 @@ function Train(props) {
   useFrame(() => (ref.current.position.z = scroll.offset * 120))
   // Merged creates THREE.InstancedMeshes out of the meshes you feed it
   // All in all we end up with just 5 draw-calls for the entire scene
+  let z = 20
+  let getZ = () => {
+    z -= 26
+    return z
+  }
   return (
     <Merged castShadow receiveShadow meshes={meshes}>
       {(models) => (
@@ -34,36 +40,46 @@ function Train(props) {
             color="#252525"
             seatColor="sandybrown"
             name="1A"
-            position={[0, 0, -6]}
+            position={[0, 0, getZ()]}
           />
           <Cabin
             models={models}
             color="#454545"
             seatColor="gray"
             name="2B"
-            position={[0, 0, -32]}
+            position={[0, 0, getZ()]}
           />
           <Cabin
             models={models}
             color="#252525"
             seatColor="lightskyblue"
             name="3A"
-            position={[0, 0, -58]}
+            position={[0, 0, getZ()]}
           />
           <Cabin
             models={models}
             color="#454545"
             seatColor="gray"
             name="4B"
-            position={[0, 0, -84]}
+            position={[0, 0, getZ()]}
           />
           <Cabin
             models={models}
             color="#252525"
             seatColor="sandybrown"
             name="5B"
-            position={[0, 0, -110]}
+            position={[0, 0, getZ()]}
           />
+          {cabins.map(({ _key, name }) => (
+            <Cabin
+              key={_key}
+              models={models}
+              color="#252525"
+              seatColor="sandybrown"
+              name={name}
+              position={[0, 0, getZ()]}
+            />
+          ))}
         </group>
       )}
     </Merged>
@@ -125,7 +141,7 @@ const Cabin = ({
 const CanvasMemo = memo(function TrainsCanvas(props) {
   console.debug('TrainsCanvas render', { props })
 
-  const { environmentPreset } = props
+  const { environmentPreset, cabins } = props
 
   return (
     <Canvas
@@ -153,7 +169,7 @@ const CanvasMemo = memo(function TrainsCanvas(props) {
       </directionalLight>
       <Suspense fallback={null}>
         <ScrollControls pages={4}>
-          <Train />
+          <Train cabins={cabins} />
         </ScrollControls>
         <mesh position={[0, -1.5, 0]} rotation={[-Math.PI / 2, 0, 0]}>
           <planeGeometry args={[50, 50]} />
@@ -176,7 +192,8 @@ const CanvasMemo = memo(function TrainsCanvas(props) {
 })
 
 export default function TrainsPreview(props) {
-  console.debug('TrainsPreview render', { props })
+  console.info('TrainsPreview displayed', props.document.displayed)
+  console.debug('TrainsPreview props', props)
 
   useEffect(() => {
     document.documentElement.style.overscrollBehavior = 'none'
@@ -187,6 +204,17 @@ export default function TrainsPreview(props) {
     }
   }, [])
 
-  const { environmentPreset } = props.document.displayed
-  return <CanvasMemo environmentPreset={environmentPreset || 'dawn'} />
+  const { environmentPreset, cabins } = props.document.displayed
+  const memoCabins = useStableMemo(cabins)
+  return (
+    <CanvasMemo
+      environmentPreset={environmentPreset || 'dawn'}
+      cabins={memoCabins}
+    />
+  )
+}
+
+function useStableMemo(val) {
+  const stringiedVal = useMemo(() => JSON.stringify(val), [val])
+  return useMemo(() => JSON.parse(stringiedVal), [stringiedVal])
 }
