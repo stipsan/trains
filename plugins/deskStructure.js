@@ -5,24 +5,28 @@ import EditIcon from 'part:@sanity/base/edit-icon'
 
 import { bootCodyHack } from '../compiled/codyhack'
 
+import styles from './deskStructure.css'
+
 const TestPreview = (props) => {
   console.log('bootCodyHack', bootCodyHack)
   const nodeRef = useRef()
 
   useEffect(() => {
     if (nodeRef.current) {
-      const root = bootCodyHack(nodeRef.current)
+      const unmount = bootCodyHack(nodeRef.current)
 
-      console.log('TestPreview', { root })
+      return () => {
+        unmount()
+      }
     }
   }, [])
 
-  return <div ref={nodeRef} />
+  return <div className={styles.canvas} ref={nodeRef} />
 }
 
 export default () =>
   S.list()
-    .title('Content')
+    .title('Structures')
     .items([
       S.listItem()
         .title('Trains')

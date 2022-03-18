@@ -123,107 +123,49 @@ const Cabin = ({
 
 export default function App() {
   return (
-    <>
-      <style
-        dangerouslySetInnerHTML={{
-          __html: `
-    * {
-      box-sizing: border-box;
-    }
-    
-    html,
-    body,
-    #root {
-      width: 100vw;
-      height: 100%;
-      margin: 0;
-      padding: 0;
-      background-color: #efefef;
-      -webkit-touch-callout: none;
-      -webkit-user-select: none;
-      -khtml-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-      overflow: hidden;
-      overscroll-behavior: none;
-    }
-    
-    body {
-      position: fixed;
-      overflow: hidden;
-      overscroll-behavior-y: none;
-      font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir,
-        helvetica neue, helvetica, ubuntu, roboto, noto, segoe ui, arial, sans-serif;
-      color: black;
-    }
-    
-    html {
-      overflow: hidden;
-      height: 100%;
-    }
-    
-    body {
-      height: 100%;
-      overflow: auto;
-    }
-    
-    canvas {
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      top: 0;
-      pointer-events: none;
-      overflow: hidden;
-    }
-    
-    `,
-        }}
-      />
-      <Canvas
-        dpr={[1, 1.5]}
-        shadows
-        camera={{ position: [-15, 15, 18], fov: 35 }}
-        gl={{ alpha: false }}
+    <Canvas
+      dpr={[1, 1.5]}
+      shadows
+      camera={{ position: [-15, 15, 18], fov: 35 }}
+      gl={{ alpha: false }}
+    >
+      <fog attach="fog" args={['#17171b', 30, 40]} />
+      <color attach="background" args={['#17171b']} />
+      <ambientLight intensity={0.25} />
+      <directionalLight
+        castShadow
+        intensity={2}
+        position={[10, 6, 6]}
+        shadow-mapSize={[1024, 1024]}
       >
-        <fog attach="fog" args={['#17171b', 30, 40]} />
-        <color attach="background" args={['#17171b']} />
-        <ambientLight intensity={0.25} />
-        <directionalLight
-          castShadow
-          intensity={2}
-          position={[10, 6, 6]}
-          shadow-mapSize={[1024, 1024]}
-        >
-          <orthographicCamera
-            attach="shadow-camera"
-            left={-20}
-            right={20}
-            top={20}
-            bottom={-20}
+        <orthographicCamera
+          attach="shadow-camera"
+          left={-20}
+          right={20}
+          top={20}
+          bottom={-20}
+        />
+      </directionalLight>
+      <Suspense fallback={null}>
+        <ScrollControls pages={3}>
+          <Train />
+        </ScrollControls>
+        <mesh position={[0, -1.5, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+          <planeGeometry args={[50, 50]} />
+          <MeshReflectorMaterial
+            blur={[400, 100]}
+            resolution={1024}
+            mixBlur={1}
+            mixStrength={15}
+            depthScale={1}
+            minDepthThreshold={0.85}
+            color="#151515"
+            metalness={0.6}
+            roughness={1}
           />
-        </directionalLight>
-        <Suspense fallback={null}>
-          <ScrollControls pages={3}>
-            <Train />
-          </ScrollControls>
-          <mesh position={[0, -1.5, 0]} rotation={[-Math.PI / 2, 0, 0]}>
-            <planeGeometry args={[50, 50]} />
-            <MeshReflectorMaterial
-              blur={[400, 100]}
-              resolution={1024}
-              mixBlur={1}
-              mixStrength={15}
-              depthScale={1}
-              minDepthThreshold={0.85}
-              color="#151515"
-              metalness={0.6}
-              roughness={1}
-            />
-          </mesh>
-          <Environment preset="dawn" />
-        </Suspense>
-      </Canvas>
-    </>
+        </mesh>
+        <Environment preset="dawn" />
+      </Suspense>
+    </Canvas>
   )
 }

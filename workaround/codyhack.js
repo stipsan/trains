@@ -5,13 +5,9 @@ import ReactDOM from 'react-dom/client'
 import TrainsPreview from '../components/TrainsPreview'
 
 export const bootCodyHack = (node) => {
-  const root = ReactDOM.createRoot(node).render(
-    React.createElement(TrainsPreview)
-  )
-
-  console.log('bootCodyHack', root)
-
+  const root = ReactDOM.createRoot(node)
+  root.render(React.createElement(TrainsPreview))
   return () => {
-    console.log('@TODO implement unmount')
+    root.unmount()
   }
 }

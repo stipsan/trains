@@ -7,7 +7,7 @@
   "scripts": {
     "build": "sanity build dist -y",
     "format": "prettier . --write",
-    "postinstall": "microbundle -i workaround/codyhack.js -o compiled/codyhack.js --no-pkg-main -f cjs --external none --jsx React.createElement --jsxFragment React.Fragment",
+    "postinstall": "microbundle -i workaround/codyhack.js -o compiled/codyhack.js --no-pkg-main -f cjs --external none --jsx React.createElement --jsxFragment React.Fragment --css-modules false",
     "postinstall-broken": "npx spack",
     "start": "sanity start"
   },
