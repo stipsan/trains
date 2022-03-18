@@ -26,60 +26,59 @@ function Train(props) {
   useFrame(() => (ref.current.position.z = scroll.offset * 120))
   // Merged creates THREE.InstancedMeshes out of the meshes you feed it
   // All in all we end up with just 5 draw-calls for the entire scene
-  let z = 20
-  let getZ = () => {
-    z -= 26
-    return z
+  let getZ = (i) => {
+    return -6 + (i * -26)
   }
   return (
     <Merged castShadow receiveShadow meshes={meshes}>
       {(models) => (
         <group ref={ref}>
-          <Cabin
-            models={models}
-            color="#252525"
-            seatColor="sandybrown"
-            name="1A"
-            position={[0, 0, getZ()]}
-          />
-          <Cabin
-            models={models}
-            color="#454545"
-            seatColor="gray"
-            name="2B"
-            position={[0, 0, getZ()]}
-          />
-          <Cabin
-            models={models}
-            color="#252525"
-            seatColor="lightskyblue"
-            name="3A"
-            position={[0, 0, getZ()]}
-          />
-          <Cabin
-            models={models}
-            color="#454545"
-            seatColor="gray"
-            name="4B"
-            position={[0, 0, getZ()]}
-          />
-          <Cabin
-            models={models}
-            color="#252525"
-            seatColor="sandybrown"
-            name="5B"
-            position={[0, 0, getZ()]}
-          />
-          {cabins.map(({ _key, name }) => (
+          {cabins.map(({ _key, name }, i) => (
             <Cabin
               key={_key}
               models={models}
               color="#252525"
               seatColor="sandybrown"
               name={name}
-              position={[0, 0, getZ()]}
+              position={[0, 0, getZ(i)]}
             />
           ))}
+          <Cabin
+            models={models}
+            color="#252525"
+            seatColor="sandybrown"
+            name="1A"
+            position={[0, 0, getZ(cabins.length)]}
+          />
+          <Cabin
+            models={models}
+            color="#454545"
+            seatColor="gray"
+            name="2B"
+            position={[0, 0, getZ(cabins.length + 1)]}
+          />
+          <Cabin
+            models={models}
+            color="#252525"
+            seatColor="lightskyblue"
+            name="3A"
+            position={[0, 0, getZ(cabins.length + 2)]}
+          />
+          <Cabin
+            models={models}
+            color="#454545"
+            seatColor="gray"
+            name="4B"
+            position={[0, 0, getZ(cabins.length + 3)]}
+          />
+          <Cabin
+            models={models}
+            color="#252525"
+            seatColor="sandybrown"
+            name="5B"
+            position={[0, 0, getZ(cabins.length + 4)]}
+          />
+          
         </group>
       )}
     </Merged>
