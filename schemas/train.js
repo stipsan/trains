@@ -7,12 +7,12 @@ export default {
     {
       name: 'heading',
       type: 'string',
-      title: 'Heading'
+      title: 'Heading',
     },
     {
       name: 'tagline',
       type: 'text',
-      title: 'Tagline'
+      title: 'Tagline',
     },
-  ]
+  ],
 }
