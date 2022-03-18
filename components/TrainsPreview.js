@@ -205,7 +205,7 @@ export default function TrainsPreview(props) {
   }, [])
 
   const { environmentPreset, cabins } = props.document.displayed
-  const memoCabins = useStableMemo(cabins)
+  const memoCabins = useStableMemo(cabins || [])
   return (
     <CanvasMemo
       environmentPreset={environmentPreset || 'dawn'}
