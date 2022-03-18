@@ -14,7 +14,10 @@
     "singleQuote": true
   },
   "dependencies": {
+    "@react-three/drei": "8.16.4",
+    "@react-three/fiber": "8.0.0-beta-05",
     "@sanity/base": "^2.29.1",
+    "@sanity/components": "^2.14.0",
     "@sanity/core": "^2.28.1",
     "@sanity/default-layout": "^2.29.1",
     "@sanity/default-login": "^2.29.1",
@@ -25,7 +28,9 @@
     "prop-types": "^15.7",
     "react": "^17.0",
     "react-dom": "^17.0",
-    "styled-components": "^5.2.0"
+    "react-icons": "^4.3.1",
+    "styled-components": "^5.2.0",
+    "three": "0.138.3"
   },
   "devDependencies": {
     "@sanity/cli": "^2.28.0",
