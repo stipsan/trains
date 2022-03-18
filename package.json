@@ -5,7 +5,7 @@
     "url": "https://github.com/stipsan/trains.git"
   },
   "scripts": {
-    "build": "sanity build public -y",
+    "build": "sanity build dist -y",
     "format": "prettier . --write",
     "start": "sanity start"
   },
