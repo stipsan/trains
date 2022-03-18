@@ -1,23 +1,23 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import S from '@sanity/desk-tool/structure-builder'
 import EyeIcon from 'part:@sanity/base/eye-icon'
 import EditIcon from 'part:@sanity/base/edit-icon'
-import ReactDOM from 'react-dom'
 
-import TrainsPreview from '../components/TrainsPreview'
+import { bootCodyHack } from '../compiled/codyhack'
 
 const TestPreview = (props) => {
-  console.log('TestPreview', props)
+  console.log('bootCodyHack', bootCodyHack)
+  const nodeRef = useRef()
 
   useEffect(() => {
-    const root = ReactDOM.createRoot(document.getElementById('root')).render(
-      <TrainsPreview />
-    )
+    if (nodeRef.current) {
+      const root = bootCodyHack(nodeRef.current)
 
-    console.log('TestPreview', { root })
+      console.log('TestPreview', { root })
+    }
   }, [])
 
-  return <div id="three" />
+  return <div ref={nodeRef} />
 }
 
 export default () =>

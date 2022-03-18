@@ -1,5 +1,5 @@
 import React, { Suspense, useMemo, useRef } from 'react'
-import { Canvas, useFrame } from '../compiled/@react-three/fiber'
+import { Canvas, useFrame } from '@react-three/fiber'
 import {
   useGLTF,
   useScroll,
@@ -8,14 +8,14 @@ import {
   Merged,
   Text,
   MeshReflectorMaterial,
-} from '../compiled/@react-three/drei'
+} from '@react-three/drei'
 
 function Train() {
   const ref = useRef()
   const scroll = useScroll()
   const [cabin, seat] = useGLTF([
-    '/cabin-transformed.glb',
-    '/seat-transformed.glb',
+    '/static/cabin-transformed.glb',
+    '/static/seat-transformed.glb',
   ])
   const meshes = useMemo(
     () => ({ Cabin: cabin.nodes.cabin_1, Seat: seat.nodes.seat }),

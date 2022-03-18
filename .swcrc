@@ -1,0 +1,53 @@
+{
+  "jsc": {
+    "minify": {
+      "compress": {
+        "arrows": false,
+        "booleans": false,
+        "collapse_vars": false,
+        "comparisons": false,
+        "drop_debugger": false,
+        "evaluate": false,
+        "hoist_props": false,
+        "if_return": false,
+        "join_vars": false,
+        "loops": false,
+        "negate_iife": false,
+        "properties": false,
+        "sequences": false,
+        "side_effects": false,
+        "typeofs": false,
+        "unused": false
+      }
+    },
+    "externalHelpers": false,
+    "parser": {
+      "syntax": "ecmascript",
+      "jsx": true,
+      "dynamicImport": false,
+      "privateMethod": false,
+      "functionBind": false,
+      "exportDefaultFrom": true,
+      "exportNamespaceFrom": true,
+      "decorators": false,
+      "decoratorsBeforeExport": false,
+      "topLevelAwait": false,
+      "importMeta": true
+    },
+    "transform": {
+      "react": {
+        "pragma": "React.createElement",
+        "pragmaFrag": "React.Fragment",
+        "runtime": "automatic",
+        "throwIfNamespace": false,
+        "development": true,
+        "useBuiltins": false
+      },
+      "optimizer": {
+        "simplify": false
+      }
+    },
+    "target": "es2016",
+    "loose": true
+  }
+}
