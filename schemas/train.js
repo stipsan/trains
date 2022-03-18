@@ -12,9 +12,22 @@ export default {
       title: 'Name',
     },
     {
-      name: 'tagline',
-      type: 'text',
-      title: 'Tagline',
+      name: 'environmentPreset',
+      type: 'string',
+      title: 'Environment preset',
+      initialValue: 'dawn',
+      options: {list: [
+        'sunset',
+        'dawn',
+        'night',
+        //'warehouse',
+        'forest',
+        // 'apartment',
+        // 'studio',
+        'city',
+        'park',
+        // 'lobby',
+      ]}
     },
   ],
 }

@@ -20,6 +20,7 @@ const TestPreview = (props) => {
         bridge.unmount()
       }
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps -- if only you, ESLint, could understand the next effect hook is making sure props don't go stale :facepalm:
   }, [])
 
   useEffect(() => {
@@ -52,47 +53,3 @@ export default () =>
         .schemaType('train')
         .child(S.documentTypeList('train').title('Trains')),
     ])
-/*
-export default () => S.list()
-.title('Content')
-.items([ S.listItem()
-  .title('Trains')
-  .schemaType('train')
-  .child(S.documentTypeList('train').title('Trains').child(
-      S.documentTypeListItems('train')
-        .title('Trains')
-        .views([
-          S.view.form().icon(EditIcon),
-          S.view
-            .component(TestPreview)
-            .icon(EyeIcon)
-            .title('Preview'),
-        ])
-        
-    ))
-  
-  /*
-  export default S.list()
-    .title('Content')
-    .items([
-      S.listItem()
-        .title('Trains')
-        .icon(EyeIcon)
-        .child(S.list().title('Trains').items([S.listItem.]))
-    ])
-    /*
-    .id('train')
-    .schemaType('train')
-    .child(
-      S.documentTypeListItems('train')
-        .title('Trains')
-        .views([
-          S.view.form().icon(EditIcon),
-          S.view
-            .component(TestPreview)
-            .icon(EyeIcon)
-            .title('Preview'),
-        ])
-        
-    )
-    // */

@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { Suspense, useEffect, useMemo, useRef, memo } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import {
@@ -124,6 +125,8 @@ const Cabin = ({
 const CanvasMemo = memo(function TrainsCanvas(props) {
   console.log('TrainsCanvas render', { props })
 
+  const {environmentPreset} = props
+
   return (
     <Canvas
       dpr={[1, 1.5]}
@@ -166,7 +169,7 @@ const CanvasMemo = memo(function TrainsCanvas(props) {
             roughness={1}
           />
         </mesh>
-        <Environment preset="dawn" />
+        <Environment preset={environmentPreset} />
       </Suspense>
     </Canvas>
   )
@@ -184,5 +187,6 @@ export default function TrainsPreview(props) {
     }
   }, [])
 
-  return <CanvasMemo />
+  const {environmentPreset} = props.document.displayed
+  return <CanvasMemo environmentPreset={environmentPreset || 'dawn'} />
 }
