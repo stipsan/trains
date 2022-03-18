@@ -10,18 +10,35 @@ import styles from './deskStructure.css'
 const TestPreview = (props) => {
   console.log('bootCodyHack', bootCodyHack)
   const nodeRef = useRef()
+  const bridgeRef = useRef()
 
   useEffect(() => {
     if (nodeRef.current) {
-      const unmount = bootCodyHack(nodeRef.current)
+      const bridge = bootCodyHack(nodeRef.current, props)
+      bridgeRef.current = bridge
 
       return () => {
-        unmount()
+        bridge.unmount()
       }
     }
   }, [])
 
+  useEffect(() => {
+    if (bridgeRef.current) {
+      bridgeRef.current.sendProps(props)
+    }
+  }, [props])
+
   return <div className={styles.canvas} ref={nodeRef} />
+}
+
+export function getDefaultDocumentNode({schemaType}) {
+  // Add `Preview` tab to the `article` document form
+  if (schemaType === 'train') {
+    return S.document().views([S.view.form(), S.view.component(TestPreview).icon(EyeIcon).title('Preview')])
+  }
+
+  return undefined
 }
 
 export default () =>
@@ -33,16 +50,8 @@ export default () =>
         .schemaType('train')
         .child(
           S.documentTypeList('train')
-            .title('Train')
-            .child((documentId) =>
-              S.document()
-                .documentId(documentId)
-                .schemaType('train')
-                .views([
-                  S.view.form().icon(EditIcon),
-                  S.view.component(TestPreview).icon(EyeIcon).title('Preview'),
-                ])
-            )
+            .title('Trains')
+           
         ),
     ])
 /*

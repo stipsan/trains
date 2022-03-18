@@ -1,4 +1,4 @@
-import React, { Suspense, useMemo, useRef } from 'react'
+import React, { Suspense, useEffect, useMemo, useRef } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import {
   useGLTF,
@@ -121,7 +121,16 @@ const Cabin = ({
   </group>
 )
 
-export default function App() {
+export default function TrainsPreview(props) {
+  console.log('TrainsPreview render', {props})
+
+  useEffect(() => {
+    document.scrollingElement.style.overscrollBehaviors = 'none'
+    return () => {
+      delete document.scrollingElement.style.overscrollBehaviors
+    }
+  }, [])
+
   return (
     <Canvas
       dpr={[1, 1.5]}

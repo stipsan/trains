@@ -4,10 +4,13 @@ import ReactDOM from 'react-dom/client'
 
 import TrainsPreview from '../components/TrainsPreview'
 
-export const bootCodyHack = (node) => {
+export const bootCodyHack = (node, props) => {
   const root = ReactDOM.createRoot(node)
-  root.render(React.createElement(TrainsPreview))
-  return () => {
-    root.unmount()
+  
+  function render(props) {
+    root.render(React.createElement(TrainsPreview, props))
   }
+  render(props)
+
+  return {unmount: () => root.unmount(), sendProps: props => render(props)}
 }

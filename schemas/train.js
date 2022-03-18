@@ -1,13 +1,15 @@
+import React from 'react'
+
 export default {
   name: 'train',
   type: 'document',
   title: 'Train',
-  // icon: MdAnnouncement,
+  icon: () => <span style={{fontSize: '1.6em'}}>🚂</span>,
   fields: [
     {
-      name: 'heading',
+      name: 'name',
       type: 'string',
-      title: 'Heading',
+      title: 'Name',
     },
     {
       name: 'tagline',
