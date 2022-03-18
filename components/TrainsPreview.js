@@ -27,22 +27,23 @@ function Train(props) {
   // Merged creates THREE.InstancedMeshes out of the meshes you feed it
   // All in all we end up with just 5 draw-calls for the entire scene
   let getZ = (i) => {
-    return -6 + (i * -26)
+    return -6 + i * -26
   }
   return (
     <Merged castShadow receiveShadow meshes={meshes}>
       {(models) => (
         <group ref={ref}>
-          {cabins.map(({ _key, name }, i) => (
+          {cabins.map(({ _key, name, color, seatColor }, i) => (
             <Cabin
               key={_key}
               models={models}
-              color="#252525"
-              seatColor="sandybrown"
+              color={color || '#252525'}
+              seatColor={seatColor || 'sandybrown'}
               name={name}
               position={[0, 0, getZ(i)]}
             />
           ))}
+          {/*}
           <Cabin
             models={models}
             color="#252525"
@@ -78,7 +79,7 @@ function Train(props) {
             name="5B"
             position={[0, 0, getZ(cabins.length + 4)]}
           />
-          
+      */}
         </group>
       )}
     </Merged>
@@ -167,7 +168,7 @@ const CanvasMemo = memo(function TrainsCanvas(props) {
         />
       </directionalLight>
       <Suspense fallback={null}>
-        <ScrollControls pages={4}>
+        <ScrollControls pages={3}>
           <Train cabins={cabins} />
         </ScrollControls>
         <mesh position={[0, -1.5, 0]} rotation={[-Math.PI / 2, 0, 0]}>
@@ -205,10 +206,12 @@ export default function TrainsPreview(props) {
 
   const { environmentPreset, cabins } = props.document.displayed
   const memoCabins = useStableMemo(cabins || [])
+  const sortedCabins = useMemo(() => [...memoCabins].reverse(), [memoCabins])
   return (
     <CanvasMemo
+      key={`resetOnCabinLength${memoCabins.length}`}
       environmentPreset={environmentPreset || 'dawn'}
-      cabins={memoCabins}
+      cabins={sortedCabins}
     />
   )
 }

@@ -46,6 +46,24 @@ export default {
               type: 'string',
               title: 'Name',
             },
+            {
+              name: 'color',
+              type: 'string',
+              title: 'Color',
+              initialValue: '#252525',
+              options: {
+                list: ['#252525', '#454545'],
+              },
+            },
+            {
+              name: 'seatColor',
+              type: 'string',
+              title: 'Seat color',
+              initialValue: 'sandybrown',
+              options: {
+                list: ['sandybrown', 'gray', 'lightskyblue'],
+              },
+            },
           ],
         },
       ],
