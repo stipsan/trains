@@ -4,7 +4,7 @@ export default {
   name: 'train',
   type: 'document',
   title: 'Train',
-  icon: () => <span style={{fontSize: '1.6em'}}>🚂</span>,
+  icon: () => <span style={{ fontSize: '1.6em' }}>🚂</span>,
   fields: [
     {
       name: 'name',

@@ -1,21 +1,20 @@
 import React, { useEffect, useRef } from 'react'
 import S from '@sanity/desk-tool/structure-builder'
 import EyeIcon from 'part:@sanity/base/eye-icon'
-import EditIcon from 'part:@sanity/base/edit-icon'
 
 import { bootCodyHack } from '../compiled/codyhack'
 
 import styles from './deskStructure.css'
 
 const TestPreview = (props) => {
-  console.log('bootCodyHack', bootCodyHack)
   const nodeRef = useRef()
   const bridgeRef = useRef()
 
   useEffect(() => {
     if (nodeRef.current) {
-      const bridge = bootCodyHack(nodeRef.current, props)
+      const bridge = bootCodyHack(nodeRef.current)
       bridgeRef.current = bridge
+      bridgeRef.current.sendProps(props)
 
       return () => {
         bridge.unmount()
@@ -32,10 +31,13 @@ const TestPreview = (props) => {
   return <div className={styles.canvas} ref={nodeRef} />
 }
 
-export function getDefaultDocumentNode({schemaType}) {
+export function getDefaultDocumentNode({ schemaType }) {
   // Add `Preview` tab to the `article` document form
   if (schemaType === 'train') {
-    return S.document().views([S.view.form(), S.view.component(TestPreview).icon(EyeIcon).title('Preview')])
+    return S.document().views([
+      S.view.form(),
+      S.view.component(TestPreview).icon(EyeIcon).title('Preview'),
+    ])
   }
 
   return undefined
@@ -48,11 +50,7 @@ export default () =>
       S.listItem()
         .title('Trains')
         .schemaType('train')
-        .child(
-          S.documentTypeList('train')
-            .title('Trains')
-           
-        ),
+        .child(S.documentTypeList('train').title('Trains')),
     ])
 /*
 export default () => S.list()
