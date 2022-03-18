@@ -20,7 +20,7 @@ const TestPreview = (props) => {
         bridge.unmount()
       }
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps -- if only you, ESLint, could understand the next effect hook is making sure props don't go stale :facepalm:
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- if only you, ESLint, could understand the next effect hook is making sure props don't go stale :facepalm:
   }, [])
 
   useEffect(() => {

@@ -11,7 +11,7 @@ import {
   MeshReflectorMaterial,
 } from '@react-three/drei'
 
-function Train() {
+function Train(props) {
   const ref = useRef()
   const scroll = useScroll()
   const [cabin, seat] = useGLTF([
@@ -123,9 +123,9 @@ const Cabin = ({
 )
 
 const CanvasMemo = memo(function TrainsCanvas(props) {
-  console.log('TrainsCanvas render', { props })
+  console.debug('TrainsCanvas render', { props })
 
-  const {environmentPreset} = props
+  const { environmentPreset } = props
 
   return (
     <Canvas
@@ -152,7 +152,7 @@ const CanvasMemo = memo(function TrainsCanvas(props) {
         />
       </directionalLight>
       <Suspense fallback={null}>
-        <ScrollControls pages={3}>
+        <ScrollControls pages={4}>
           <Train />
         </ScrollControls>
         <mesh position={[0, -1.5, 0]} rotation={[-Math.PI / 2, 0, 0]}>
@@ -176,7 +176,7 @@ const CanvasMemo = memo(function TrainsCanvas(props) {
 })
 
 export default function TrainsPreview(props) {
-  console.log('TrainsPreview render', { props })
+  console.debug('TrainsPreview render', { props })
 
   useEffect(() => {
     document.documentElement.style.overscrollBehavior = 'none'
@@ -187,6 +187,6 @@ export default function TrainsPreview(props) {
     }
   }, [])
 
-  const {environmentPreset} = props.document.displayed
+  const { environmentPreset } = props.document.displayed
   return <CanvasMemo environmentPreset={environmentPreset || 'dawn'} />
 }

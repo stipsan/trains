@@ -16,18 +16,39 @@ export default {
       type: 'string',
       title: 'Environment preset',
       initialValue: 'dawn',
-      options: {list: [
-        'sunset',
-        'dawn',
-        'night',
-        //'warehouse',
-        'forest',
-        // 'apartment',
-        // 'studio',
-        'city',
-        'park',
-        // 'lobby',
-      ]}
+      options: {
+        list: [
+          'sunset',
+          'dawn',
+          'night',
+          //'warehouse',
+          'forest',
+          // 'apartment',
+          // 'studio',
+          'city',
+          'park',
+          // 'lobby',
+        ],
+      },
+    },
+    {
+      name: 'cabins',
+      title: 'Cabins',
+      type: 'array',
+      of: [
+        {
+          name: 'cabin',
+          title: 'Cabins',
+          type: 'object',
+          fields: [
+            {
+              name: 'name',
+              type: 'string',
+              title: 'Name',
+            },
+          ],
+        },
+      ],
     },
   ],
 }
