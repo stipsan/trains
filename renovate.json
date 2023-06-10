@@ -8,22 +8,22 @@
   ],
   "packageRules": [
     {
-      "updateTypes": ["major"],
+      "matchUpdateTypes": ["major"],
       "extends": ["github>stipsan/renovate-presets:group"]
     },
     {
-      "depTypeList": ["dependencies"],
-      "updateTypes": ["patch", "minor"],
+      "matchDepTypes": ["dependencies"],
+      "matchUpdateTypes": ["patch", "minor"],
       "groupName": "dependencies (non-major)"
     },
     {
-      "depTypeList": ["devDependencies"],
-      "updateTypes": ["patch", "minor"],
+      "matchDepTypes": ["devDependencies"],
+      "matchUpdateTypes": ["patch", "minor"],
       "groupName": "devDependencies (non-major)"
     },
     {
-      "depTypeList": ["resolutions"],
-      "updateTypes": ["patch", "minor"],
+      "matchDepTypes": ["resolutions"],
+      "matchUpdateTypes": ["patch", "minor"],
       "groupName": "resolutions (non-major)"
     }
   ]
