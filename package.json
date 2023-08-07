@@ -24,7 +24,7 @@
     "@sanity/default-layout": "^2.29.1",
     "@sanity/default-login": "^2.29.1",
     "@sanity/desk-tool": "^2.29.1",
-    "@sanity/eslint-config-studio": "^2.0.0",
+    "@sanity/eslint-config-studio": "^3.0.0",
     "@sanity/vision": "^2.29.1",
     "@swc/helpers": "^0.3.8",
     "esbuild-register": "^3.3.2",
