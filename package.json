@@ -16,8 +16,8 @@
     "singleQuote": true
   },
   "dependencies": {
-    "@react-three/drei": "8.16.4",
-    "@react-three/fiber": "8.0.0-beta-05",
+    "@react-three/drei": "8.20.2",
+    "@react-three/fiber": "8.17.10",
     "@sanity/base": "^2.29.1",
     "@sanity/components": "^2.14.0",
     "@sanity/core": "^2.28.1",
@@ -26,16 +26,16 @@
     "@sanity/desk-tool": "^2.29.1",
     "@sanity/eslint-config-studio": "^2.0.0",
     "@sanity/vision": "^2.29.1",
-    "@swc/helpers": "^0.3.8",
+    "@swc/helpers": "^0.5.0",
     "esbuild-register": "^3.3.2",
     "eslint": "^8.6.0",
-    "microbundle": "^0.14.2",
+    "microbundle": "^0.15.0",
     "prop-types": "^15.7",
     "react": "^18.0.0-rc.2",
     "react-dom": "^18.0.0-rc.2",
     "react-icons": "^4.3.1",
     "styled-components": "^5.2.0",
-    "three": "0.138.3"
+    "three": "0.169.0"
   },
   "devDependencies": {
     "@sanity/cli": "^2.28.0",
