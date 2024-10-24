@@ -25,7 +25,7 @@
     "@sanity/default-login": "^2.29.1",
     "@sanity/desk-tool": "^2.29.1",
     "@sanity/eslint-config-studio": "^2.0.0",
-    "@sanity/vision": "^2.29.1",
+    "@sanity/vision": "^3.0.0",
     "@swc/helpers": "^0.3.8",
     "esbuild-register": "^3.3.2",
     "eslint": "^8.6.0",
@@ -38,7 +38,7 @@
     "three": "0.138.3"
   },
   "devDependencies": {
-    "@sanity/cli": "^2.28.0",
+    "@sanity/cli": "^3.62.1",
     "@swc/cli": "^0.1.55",
     "@swc/core": "^1.2.158",
     "prettier": "^2.6.0",
